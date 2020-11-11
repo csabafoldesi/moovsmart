@@ -13,8 +13,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
   mail:
-    username: moovsmartproject2020.1@gmail.com
-    password: moovsmart-2020
+    username:
+    password:
 cloudinary:
   cloud_name:
   api_key:
