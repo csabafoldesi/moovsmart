@@ -1,0 +1,36 @@
+<div (click)="details(property.id)"
+     *ngFor="let property of propertyList"
+     class="property-card">
+  <img *ngIf="property.imageUrl" [src]="property.imageUrl" alt="image" class="property-image">
+  <div *ngIf="!property.imageUrl" class="image-placeholder">
+    <mat-icon aria-hidden="false" aria-label="Missing image" i18n-aria-label="property-list-image">panorama</mat-icon>
+  </div>
+  <p class="property-title">
+    <span>{{property.name}}</span>
+  </p>
+  <div class="flex-container-text">
+    <div class="description-item" i18n-matTooltip="property-list-image" matTooltip="Number of rooms"
+         matTooltipClass="tooltip">
+      <mat-icon aria-hidden="false" aria-label="Number of rooms" i18n-aria-label="property-list-image">
+        single_bed
+      </mat-icon>
+      {{property.numberOfRooms}}
+    </div>
+    <div class="description-item" i18n-matTooltip="property-list-image" matTooltip="Price" matTooltipClass="tooltip">
+      <mat-icon aria-hidden="false" aria-label="Price" i18n-aria-label="property-list-image">credit_card</mat-icon>
+      {{property.price}} €
+    </div>
+    <div class="description-item" i18n-matTooltip="property-list-image" matTooltip="Floor area"
+         matTooltipClass="tooltip">
+      <mat-icon aria-hidden="false" aria-label="Floor area" i18n-aria-label="property-list-image">aspect_ratio
+      </mat-icon>
+      {{property.floorArea}} m²
+    </div>
+    <div class="description-item" i18n-matTooltip="property-list-image" matTooltip="Sqm price"
+         matTooltipClass="tooltip">
+      <mat-icon aria-hidden="false" aria-label="Sqm price" i18n-aria-label="property-list-image">local_offer</mat-icon>
+      {{property.sqmPrice}} €
+    </div>
+  </div>
+
+</div>

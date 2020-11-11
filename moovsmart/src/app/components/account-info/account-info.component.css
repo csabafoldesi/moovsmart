@@ -1,0 +1,31 @@
+.card-container {
+  margin-bottom: 10px;
+}
+
+mat-card-title {
+  font-size: 1.3em;
+}
+
+.flex-account-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  overflow-wrap: break-word;
+  padding: 5px;
+  font-size: 1.0em;
+}
+
+.flex-account-container > div {
+  min-width: 0;
+}
+
+.flex-account-container table {
+  border-spacing: 12px;
+}
+
+.title {
+  font-weight: bold;
+}

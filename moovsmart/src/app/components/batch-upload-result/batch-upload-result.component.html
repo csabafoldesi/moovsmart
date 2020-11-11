@@ -1,0 +1,40 @@
+<h2 i18n="batch-upload-result">Upload results</h2>
+
+<p *ngIf="recordCount.success > 0" i18n="batch-upload-result">{{recordCount.success}} record loaded successfully</p>
+<p *ngIf="recordCount.unSuccess > 0" i18n="batch-upload-result">{{recordCount.unSuccess}} record not loaded because of
+  problems</p>
+<p *ngIf="recordCount.unSuccess + recordCount.success  === 0" i18n="batch-upload-result">No record found</p>
+
+<div class="table-container">
+  <table class="result-table">
+    <thead>
+    <tr>
+      <th *ngFor="let column of columnNames">{{column}}</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <ng-container *ngFor="let record of uploadResult.resultItems">
+      <tr *ngIf="!objectKeys(record.errorList).length">
+        <td *ngFor="let column of columnNames" class="success">
+          {{record.propertyForm[column]}}
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngFor="let record of uploadResult.resultItems">
+      <tr *ngIf="objectKeys(record.errorList).length">
+        <td *ngFor="let column of columnNames" [matTooltip]="record.errorList[column]" matTooltipClass="tooltip">
+          <span *ngIf="record.errorList[column]" class="error">
+            {{record.propertyForm[column]}}&nbsp;
+          </span>
+          <span *ngIf="!record.errorList[column]">
+            {{record.propertyForm[column]}}
+          </span>
+        </td>
+      </tr>
+    </ng-container>
+
+    </tbody>
+  </table>
+</div>

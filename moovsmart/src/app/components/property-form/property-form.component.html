@@ -1,0 +1,243 @@
+<div class="container">
+
+  <mat-card class="card-container">
+    <mat-card-header>
+      <p *ngIf="propertyId === 0" class="mat-headline" i18n="property-form">Add Property</p>
+      <p *ngIf="propertyId !== 0" class="mat-headline" i18n="property-form">Edit Property</p>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="submit()" [formGroup]="propertyForm" class="property-form">
+
+        <mat-card-header>
+          <mat-icon aria-hidden="false" aria-label="Contact" i18n-aria-label="property-form" mat-card-avatar>info
+          </mat-icon>
+          <mat-card-title i18n="property-form">Title, description</mat-card-title>
+        </mat-card-header>
+        <div class="form-flex">
+          <mat-form-field>
+            <mat-label i18n="property-form">Title</mat-label>
+            <input formControlName="name" i18n-placeholder="property-form" matInput
+                   placeholder="Enter a title for the property" type="text">
+            <mat-error *ngIf="propertyForm.get('name').errors?.serverError">
+              {{propertyForm.get('name').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="form-full-width">
+          <mat-label i18n="property-form">Description</mat-label>
+          <textarea cdkAutosizeMaxRows="8"
+                    cdkAutosizeMinRows="3"
+                    cdkTextareaAutosize
+                    formControlName="description"
+                    matInput
+                    i18n-placeholder="property-form"
+                    placeholder="Enter description">
+          </textarea>
+          <mat-error *ngIf="propertyForm.get('description').errors?.serverError">
+            {{propertyForm.get('description').errors['serverError']}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-card-header>
+          <mat-icon aria-hidden="false" aria-label="Contact" i18n-aria-label="property-form" mat-card-avatar>
+            local_offer
+          </mat-icon>
+          <mat-card-title i18n="property-form">Price</mat-card-title>
+        </mat-card-header>
+        <div>
+          <mat-form-field class="form-half-width">
+            <mat-label i18n="property-form">Price</mat-label>
+            <input (input)="numberFieldCheck('price')" class="number-field" formControlName="price" matInput
+                   i18n-placeholder="property-form" placeholder="Enter the price" type="text">
+            <span matSuffix>&nbsp;€</span>
+            <mat-error *ngIf="propertyForm.get('price').errors?.serverError">
+              {{propertyForm.get('price').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-card-header>
+          <mat-icon aria-hidden="false" aria-label="Contact" i18n-aria-label="property-form" mat-card-avatar>
+            single_bed
+          </mat-icon>
+          <mat-card-title i18n="property-form">Rooms, size</mat-card-title>
+        </mat-card-header>
+        <div class="form-flex">
+          <mat-form-field>
+            <mat-label i18n="property-form">Number of rooms</mat-label>
+            <input (input)="numberFieldCheck('numberOfRooms')" autocomplete="off" class="number-field"
+                   formControlName="numberOfRooms" i18n-placeholder="property-form"
+                   matInput placeholder="Enter the number of rooms" type="text">
+            <mat-error *ngIf="propertyForm.get('numberOfRooms').errors?.serverError">
+              {{propertyForm.get('numberOfRooms').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">Floor area</mat-label>
+            <input (input)="numberFieldCheck('floorArea')" autocomplete="off" class="number-field"
+                   formControlName="floorArea" i18n-placeholder="property-form"
+                   matInput placeholder="Enter the floor area" type="text">
+            <span matSuffix>&nbsp;m²</span>
+            <mat-error *ngIf="propertyForm.get('floorArea').errors?.serverError">
+              {{propertyForm.get('floorArea').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">Balcony size</mat-label>
+            <input (input)="numberFieldCheck('balconySize')" autocomplete="off" class="number-field"
+                   formControlName="balconySize" i18n-placeholder="property-form"
+                   matInput placeholder="Enter the balcony size" type="text">
+            <span matSuffix>&nbsp;m²</span>
+            <mat-error *ngIf="propertyForm.get('balconySize').errors?.serverError">
+              {{propertyForm.get('balconySize').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">Lot size</mat-label>
+            <input (input)="numberFieldCheck('lotSize')" autocomplete="off" class="number-field"
+                   formControlName="lotSize" i18n-placeholder="property-form"
+                   matInput placeholder="Enter the lot size" type="text">
+            <span matSuffix>&nbsp;m²</span>
+            <mat-error *ngIf="propertyForm.get('lotSize').errors?.serverError">
+              {{propertyForm.get('lotSize').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <mat-card-header>
+          <mat-icon aria-hidden="false" aria-label="Contact" i18n-aria-label="property-form" mat-card-avatar>home
+          </mat-icon>
+          <mat-card-title i18n="property-form">Location</mat-card-title>
+        </mat-card-header>
+        <div class="form-flex">
+          <mat-form-field>
+            <mat-label i18n="property-form">Country</mat-label>
+            <input formControlName="country" i18n-placeholder="property-form" matInput placeholder="Enter the county"
+                   type="text">
+            <mat-error *ngIf="propertyForm.get('country').errors?.serverError">
+              {{propertyForm.get('country').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">Zip Code</mat-label>
+            <input formControlName="zipCode" i18n-placeholder="property-form" matInput placeholder="Enter the zip code"
+                   type="text">
+            <mat-error *ngIf="propertyForm.get('zipCode').errors?.serverError">
+              {{propertyForm.get('zipCode').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">City</mat-label>
+            <input formControlName="city" i18n-placeholder="property-form" matInput placeholder="Enter the city"
+                   type="text">
+            <mat-error *ngIf="propertyForm.get('city').errors?.serverError">
+              {{propertyForm.get('city').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="form-full-width">
+          <mat-label i18n="property-form">Street, house number, building, floor</mat-label>
+          <input formControlName="street" i18n-placeholder="property-form" matInput placeholder="Enter the address"
+                 type="text">
+          <mat-error *ngIf="propertyForm.get('street').errors?.serverError">
+            {{propertyForm.get('street').errors['serverError']}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-card-header>
+          <mat-icon aria-hidden="false" aria-label="More details" i18n-aria-label="property-form" mat-card-avatar>
+            apartment
+          </mat-icon>
+          <mat-card-title i18n="property-form">More details</mat-card-title>
+        </mat-card-header>
+        <div class="form-flex">
+          <mat-form-field>
+            <mat-label i18n="property-form">Year built</mat-label>
+            <input (input)="numberFieldCheck('yearBuilt')" autocomplete="off" formControlName="yearBuilt" matInput
+                   i18n-placeholder="property-form" maxlength="4" placeholder="Enter the year built" type="text">
+            <mat-error *ngIf="propertyForm.get('yearBuilt').errors?.serverError">
+              {{propertyForm.get('yearBuilt').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">Type</mat-label>
+            <mat-select formControlName="propertyType">
+              <mat-option disabled i18n="property-form" value="">&#45;&#45; Please choose a type &#45;&#45;</mat-option>
+              <mat-option *ngFor="let type of propertyFormInitData?.propertyTypes" [value]="type.propertyType">
+                {{type.displayName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="propertyForm.get('propertyType').errors?.serverError">
+              {{propertyForm.get('propertyType').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">Condition</mat-label>
+            <mat-select formControlName="propertyCondition">
+              <mat-option disabled i18n="property-form" value="">&#45;&#45; Please choose a condition &#45;&#45;
+              </mat-option>
+              <mat-option *ngFor="let condition of propertyFormInitData?.propertyConditions"
+                          [value]="condition.propertyCondition">{{condition.displayName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="propertyForm.get('propertyCondition').errors?.serverError">
+              {{propertyForm.get('propertyCondition').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-flex">
+          <mat-form-field>
+            <mat-label i18n="property-form">Heating type</mat-label>
+            <mat-select formControlName="propertyHeating">
+              <mat-option disabled i18n="property-form" value="">&#45;&#45; Please choose a heating type &#45;&#45;
+              </mat-option>
+              <mat-option *ngFor="let heating of propertyFormInitData?.propertyHeatings"
+                          [value]="heating.propertyHeating">{{heating.displayName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="propertyForm.get('propertyHeating').errors?.serverError">
+              {{propertyForm.get('propertyHeating').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label i18n="property-form">Parking</mat-label>
+            <mat-select formControlName="propertyParking">
+              <mat-option disabled i18n="property-form" value="">&#45;&#45; Please choose a parking option &#45;&#45;
+              </mat-option>
+              <mat-option *ngFor="let parking of propertyFormInitData?.propertyParkings"
+                          [value]="parking.propertyParking">{{parking.displayName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="propertyForm.get('propertyParking').errors?.serverError">
+              {{propertyForm.get('propertyParking').errors['serverError']}}
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <mat-card-header>
+          <mat-icon aria-hidden="false" aria-label="Images" i18n-aria-label="property-form" mat-card-avatar>perm_media
+          </mat-icon>
+          <mat-card-title i18n="property-form">Images</mat-card-title>
+        </mat-card-header>
+
+        <app-image-selector
+          (imageEmitter)="imageListChanged($event)"
+          [imageList]="imageList"></app-image-selector>
+
+        <button (click)="onCancel()" *ngIf="propertyId !== 0" color="primary" i18n="property-form-button" mat-button
+                type="button">CANCEL
+        </button>
+        <button color="primary" i18n="property-form-button" mat-button type="submit">SAVE</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

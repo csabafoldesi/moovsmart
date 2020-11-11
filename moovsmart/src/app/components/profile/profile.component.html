@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="isOpenedSideNav">
+    <div class="sidenav-inner-container">
+      <p class="mat-headline title" i18n="profile">Profile</p>
+      <mat-card class="menu-card" (click)="showAccountInfo()">
+        <div class="flex-container">
+          <mat-icon>account_circle</mat-icon>
+          <span class="custom-span" i18n="profile">&nbsp;Account</span>
+        </div>
+      </mat-card>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content-container">
+    <button mat-icon-button color="primary" (click)="sidenav.toggle()" class="toggle-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-card class="content-card mat-elevation-z3"
+              [ngStyle]="{'min-width': isRegistrationFormEditShown ? '550px' : '355px'}">
+      <table class="content-card-table">
+        <colgroup *ngIf="isRegistrationFormEditShown">
+          <col style="width:10%">
+          <col style="width:80%">
+          <col style="width:10%">
+        </colgroup>
+        <tbody>
+        <tr>
+          <td *ngIf="isRegistrationFormEditShown" class="content-card-table-item">
+            <button mat-icon-button color="primary" (click)="showAccountInfo()">
+                <span class="material-icons">
+                  arrow_back
+                </span>
+            </button>
+          </td>
+          <td>
+            <app-account-info *ngIf="isAccountInfoShown"
+                              (openAccountEditEmitter)="showRegistrationFormEdit()"></app-account-info>
+            <app-registration-form *ngIf="isRegistrationFormEditShown"
+                                   (openAccountDetailsEmitter)="showAccountInfo()"
+                                   class="content-card-table-item"></app-registration-form>
+          </td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

@@ -1,0 +1,10 @@
+<div class="message-send-dialog">
+  <div mat-dialog-content>
+    <agm-map [latitude]="data.location.lat" [longitude]="data.location.lng" [zoom]="data.zoom">
+      <agm-marker [latitude]="data.location.lat" [longitude]="data.location.lng"></agm-marker>
+    </agm-map>
+  </div>
+  <div mat-dialog-actions>
+    <button (click)="onClose()" color="primary" i18n="map-dialog-button" mat-button>CLOSE</button>
+  </div>
+</div>

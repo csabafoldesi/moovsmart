@@ -1,0 +1,88 @@
+<div class="container">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title i18n="property-list-filter">
+        Filters
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form (ngSubmit)="submitFilter()" [formGroup]="filterForm">
+
+      <mat-form-field>
+        <input [matAutocomplete]="auto"
+               aria-label="City"
+               formControlName="cityControl"
+               matInput
+               i18n-placeholder="property-list-filter"
+               placeholder="City"
+               type="text">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let city of filteredCityOptions | async" [value]="city">
+            {{city}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Min price</mat-label>
+        <input formControlName="minPrice" i18n-placeholder="property-list-filter" matInput placeholder="Minimum price"
+               type="number">
+      </mat-form-field>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Max price</mat-label>
+        <input formControlName="maxPrice" i18n-placeholder="property-list-filter" matInput placeholder="Maximum price"
+               type="number">
+      </mat-form-field>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Min rooms</mat-label>
+        <input formControlName="minNumberOfRooms" i18n-placeholder="property-list-filter" matInput
+               placeholder="Minimum rooms" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Max rooms</mat-label>
+        <input formControlName="maxNumberOfRooms" i18n-placeholder="property-list-filter" matInput
+               placeholder="Maximum rooms" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Min floor area</mat-label>
+        <input formControlName="minFloorArea" i18n-placeholder="property-list-filter" matInput
+               placeholder="Minimum floor area" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Max floor area</mat-label>
+        <input formControlName="maxFloorArea" i18n-placeholder="property-list-filter" matInput
+               placeholder="Maximum floor area" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Min sqm price</mat-label>
+        <input formControlName="minSqmPrice" i18n-placeholder="property-list-filter" matInput
+               placeholder="Minimum sqm price" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="range">
+        <mat-label i18n="property-list-filter">Max sqm price</mat-label>
+        <input formControlName="maxSqmPrice" i18n-placeholder="property-list-filter" matInput
+               placeholder="Maximum sqm price" type="number">
+      </mat-form-field>
+      <br>
+
+      <mat-checkbox [checked]="onlyWithPicture"
+                    class="example-margin"
+                    color="primary"
+                    formControlName="withPicture"
+                    i18n="property-list-filter">
+        Picture
+      </mat-checkbox>
+      <br>
+
+      <button color="primary" i18n="property-list-filter-button" mat-button type="submit">FILTER</button>
+      <button color="primary" i18n="property-list-filter-button" mat-button type="reset">RESET</button>
+    </form>
+  </mat-expansion-panel>
+</div>

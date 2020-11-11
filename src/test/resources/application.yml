@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    initialization-mode: always
+    data: classpath:/test-data.sql
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  mail:
+    username: moovsmartproject2020.1@gmail.com
+    password: moovsmart-2020
+cloudinary:
+  cloud_name:
+  api_key:
+  api_secret:
+  category: moovsmart
+logging:
+  level:
+    com.progmasters: debug
+    org.springframework: info
+    org.hibernate: error
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+map:
+  api_key:

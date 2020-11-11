@@ -1,0 +1,80 @@
+.description {
+  font-size: 1.3em;
+}
+
+.card-container {
+  margin: auto;
+  width: 80%;
+  padding: 15px;
+  background-color: #e9eef6;
+}
+
+.property-name {
+  font-size: 1.3em;
+}
+
+.card-inner-container {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.card-action-button-container {
+  margin-left: 1px;
+  margin-top: 10px;
+}
+
+.property-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.property-fields-item {
+  margin: 5px;
+  flex-grow: 1;
+}
+
+.property-fields-item.size1 {
+  flex-grow: 1;
+}
+
+.property-fields-item.size2 {
+  flex-grow: 2;
+}
+
+.property-field {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  font-size: 1.2em;
+}
+
+.property-fields-table td {
+  font-size: 1.2em;
+  padding: 3px;
+}
+
+.property-fields-table td.title {
+  font-weight: bold;
+}
+
+.property-fields-table td.right {
+  text-align: right;
+}
+
+.location-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.property-statistics {
+  max-width: 20%;
+  margin: 2px 50px;
+}
+
+div.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

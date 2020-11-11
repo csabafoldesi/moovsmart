@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f9fcff;
+}
+
+.container {
+  margin: 30px;
+}
+
+.green-snackbar {
+  color: white;
+  background-color: darkgreen;
+}
+
+.red-snackbar {
+  color: white;
+  background-color: darkred;
+}
+
+.normal-snackbar {
+  color: gold;
+}
+
+.green-snackbar button, .red-snackbar button, .normal-snackbar button {
+  color: gold;
+}
+
+.dialog-custom-color {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.mat-tooltip.tooltip {
+  font-size: 0.9em;
+}
+
+.link {
+  cursor: pointer;
+}

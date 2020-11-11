@@ -1,0 +1,224 @@
+<div class="container">
+  <mat-card class="card-container">
+    <mat-card-header>
+      <div class="header">
+        <p class="property-name">{{propertyDetails?.name}}</p>
+        <div>
+        <span class="material-icons" i18n-matTooltip="property-details" matTooltip="Number of visitors"
+              matTooltipClass="tooltip">
+          visibility
+        </span>
+          {{propertyDetails?.visits}}
+          <span class="material-icons" i18n-matTooltip="property-details" matTooltip="Have been bookmarked"
+                matTooltipClass="tooltip">
+          bookmark
+        </span>
+          {{propertyDetails?.bookmarks}}
+        </div>
+      </div>
+      <!--
+            <mat-card class="property-statistics">
+              <span class="material-icons" i18n-matTooltip="property-details" matTooltip="Number of visitors"
+                    matTooltipClass="tooltip">
+                visibility
+              </span>
+              {{propertyDetails?.visits}}
+              <span class="material-icons" i18n-matTooltip="property-details" matTooltip="Have been bookmarked"
+                    matTooltipClass="tooltip">
+                bookmark
+              </span>
+              {{propertyDetails?.bookmarks}}
+            </mat-card>
+      -->
+    </mat-card-header>
+
+
+    <app-image-viewer *ngIf="propertyDetails?.imageList.length > 0"
+                      [imageList]="propertyDetails?.imageList"></app-image-viewer>
+
+    <mat-card class="card-inner-container">
+      <div class="description">
+        <p>{{propertyDetails?.description}}</p>
+      </div>
+
+      <div class="property-fields">
+
+        <mat-card class="property-fields-item">
+          <mat-card-header>
+            <mat-icon aria-hidden="false" aria-label="Contact" i18n-aria-label="property-details" mat-card-avatar>
+              local_offer
+            </mat-icon>
+            <mat-card-title i18n="property-details">Price</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="property-field">
+              {{propertyDetails?.price}} € ({{propertyDetails?.sqmPrice}} €/m²)
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="property-fields-item">
+          <mat-card-header>
+            <mat-icon aria-hidden="false" aria-label="Location" i18n-aria-label="property-details" mat-card-avatar>
+              home
+            </mat-icon>
+            <mat-card-title i18n="property-details">Location</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="location-container">
+              <div>
+                <div class="property-field">
+                  {{propertyDetails?.country}}
+                </div>
+                <div class="property-field">
+                  {{propertyDetails?.city}}, {{propertyDetails?.zipCode}}
+                </div>
+                <div class="property-field">
+                  {{propertyDetails?.street}}
+                </div>
+              </div>
+              <div *ngIf="propertyDetails?.location">
+                <img
+                  (click)="openMap()"
+                  alt="Map" class="link"
+                  i18n-alt="property-details"
+                  src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=200x120&maptype=roadmap&markers=color:red|{{propertyDetails.location.lat}},{{propertyDetails.location.lng}}&key={{mapApiKey}}">
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="property-fields-item">
+          <mat-card-header>
+            <mat-icon aria-hidden="false" aria-label="Contact" i18n-aria-label="property-details" mat-card-avatar>
+              account_box
+            </mat-icon>
+            <mat-card-title i18n="property-details">Contact</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="property-field">
+              {{propertyDetails?.accountDetailsProperty.fullName}}
+            </div>
+            <div class="property-field">
+              {{propertyDetails?.accountDetailsProperty.phoneNumber}}
+            </div>
+          </mat-card-content>
+          <mat-card-actions *ngIf="isMessageSuggestionBoxShown">
+            <button (click)="showForm()" color="primary" i18n="property-details-button" mat-button>SEND MESSAGE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <div class="property-fields">
+        <mat-card class="property-fields-item">
+          <mat-card-header>
+            <mat-icon aria-hidden="false" aria-label="Contact" i18n-aria-label="property-details" mat-card-avatar>info
+            </mat-icon>
+            <mat-card-title i18n="property-details">Details</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="property-fields">
+              <div class="property-fields-item size1">
+                <table class="property-fields-table">
+                  <tbody>
+                  <tr>
+                    <td colspan="2">
+                      <mat-icon aria-hidden="false" aria-label="Number of rooms" i18n-aria-label="property-details">
+                        single_bed
+                      </mat-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Number of rooms:</td>
+                    <td class="right">{{propertyDetails?.numberOfRooms}}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <mat-icon aria-hidden="false" aria-label="Size" i18n-aria-label="property-details">aspect_ratio
+                      </mat-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Floor area:</td>
+                    <td class="right">{{propertyDetails?.floorArea}} m²</td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Balcony size:</td>
+                    <td class="right">
+                      <ng-container *ngIf="propertyDetails?.balconySize">
+                        {{propertyDetails?.balconySize}} m²
+                      </ng-container>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Lot size:</td>
+                    <td class="right">{{propertyDetails?.lotSize}} m²</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="property-fields-item size2">
+                <table class="property-fields-table">
+                  <tbody>
+                  <tr>
+                    <td colspan="2">
+                      <mat-icon aria-hidden="false" aria-label="Building" i18n-aria-label="property-details">apartment
+                      </mat-icon>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Type:</td>
+                    <td>{{propertyDetails?.propertyType.displayName}}</td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Year built:</td>
+                    <td>{{propertyDetails?.yearBuilt}}</td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Condition:</td>
+                    <td>{{propertyDetails?.propertyCondition.displayName}}</td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Heating:</td>
+                    <td>{{propertyDetails?.propertyHeating.displayName}}</td>
+                  </tr>
+                  <tr>
+                    <td class="title" i18n="property-details">Parking:</td>
+                    <td>{{propertyDetails?.propertyParking.displayName}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card>
+
+    <mat-card-actions class="card-action-button-container">
+      <button (click)="goBackToPropertyList()" color="primary" i18n="property-details-button" mat-button>GO BACK
+      </button> &nbsp;
+      <button *ngIf="isAdminRole()" (click)="goBackToAdminPage()"
+              color="primary" i18n="property-details-button" mat-button>BACK TO ADMIN PAGE
+      </button> &nbsp;
+      <button (click)="onEdit()" *ngIf="isDeleteButtonShown || isAdminRole()"
+              color="primary" i18n="property-details-button" mat-button>EDIT
+      </button>
+      <button (click)="onDelete()" *ngIf="isDeleteButtonShown || isAdminRole()"
+              color="warn" i18n="property-details-button" mat-button>DELETE
+      </button>
+      <ng-container *ngIf="isMessageSuggestionBoxShown && isLoggedIn()">
+        <button (click)="bookmarkClick()" *ngIf="bookmarked" color="primary" i18n="property-details-button" mat-button>
+          <span class="material-icons">save</span>
+          SAVED
+        </button>
+        <button (click)="bookmarkClick()" *ngIf="!bookmarked" color="primary" i18n="property-details-button" mat-button>
+          <span class="material-icons">save</span>
+          BOOKMARK
+        </button>
+      </ng-container>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
+

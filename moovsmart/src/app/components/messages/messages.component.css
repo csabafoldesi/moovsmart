@@ -1,0 +1,53 @@
+.sidenav-container {
+  min-height: 90vh;
+}
+
+.sidenav-element {
+  display: flex;
+  font-size: 1.0em;
+  padding: 14px;
+}
+
+.sidenav-list-element {
+  display: flex;
+  font-size: 0.9em;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.sidenav-list-element:hover {
+  background-color: #F5F5F5;
+}
+
+.custom-span {
+  margin-top: 3px;
+}
+
+.custom-span-2 {
+  margin-top: 4px;
+}
+
+.custom-span-3 {
+  margin-top: 4px;
+}
+
+.card-title {
+  margin-top: 5px;
+}
+
+.sidenav-content-container {
+  min-height: 90vh;
+  padding: 3px;
+  background-color: #fcfdff;
+}
+
+.side-nav-table {
+  vertical-align: top;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.header-line {
+  color: rgb(63, 81, 181);
+  font-size: 1.4em;
+}

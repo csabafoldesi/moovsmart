@@ -1,0 +1,40 @@
+.card-container {
+  min-width: 150px;
+  max-width: 400px;
+  margin: auto;
+  width: 100%;
+}
+
+.login-form {
+  min-width: 150px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  padding-bottom: 10px;
+}
+
+.custom-span {
+  position: absolute;
+  margin-top: 2px;
+}
+
+#signUpButton {
+  float: right;
+}
+
+.small-reset-link {
+  cursor: pointer;
+  color: #3F51B5;
+}
+
+.small-reset-link:hover {
+  color: navy;
+  transition: 0.3s;
+}
+

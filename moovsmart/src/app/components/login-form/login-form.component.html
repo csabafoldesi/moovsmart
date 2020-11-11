@@ -1,0 +1,43 @@
+<div class="container">
+  <mat-card class="card-container mat-elevation-z6">
+    <p class="mat-headline" i18n="login-form">Login</p>
+
+    <form (ngSubmit)="submit()" [formGroup]="loginForm" class="login-form">
+
+      <mat-form-field class="form-full-width">
+        <mat-label>
+          <span class="material-icons">email</span>
+          <span class="custom-span" i18n="login-form">&nbsp;Email address</span>
+        </mat-label>
+        <input data-test-id="email" formControlName="emailAddress" i18n-placeholder="login-form"
+               matInput placeholder="Enter email address" type="email">
+        <mat-error *ngIf="loginForm.get('emailAddress').errors?.serverError" i18n="login-form">
+          Invalid email address or password
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <mat-label>
+          <span class="material-icons">lock</span>
+          <span class="custom-span" i18n="login-form">&nbsp;Password</span>
+        </mat-label>
+        <input data-test-id="password" formControlName="password" i18n-placeholder="login-form"
+               matInput placeholder="Enter password" type="password">
+        <mat-error *ngIf="loginForm.get('password').errors?.serverError">
+          {{loginForm.get('password').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+
+      <button color="primary" data-test-id="login-button" i18n="login-form-button" mat-button type="submit">LOGIN
+      </button>
+      <button color="primary" data-test-id="signup-button" i18n="login-form-button" id="signUpButton"
+              mat-button routerLink="/registration-form" type="button">SIGN UP
+      </button>
+      <mat-divider></mat-divider>
+      <br><br>
+      <small (click)="openPasswordChange()" class="small-reset-link" i18n="login-form">Forgot password?</small>
+
+    </form>
+  </mat-card>
+
+</div>

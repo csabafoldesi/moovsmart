@@ -1,0 +1,45 @@
+.image-viewer-container {
+  position: relative;
+}
+
+.large-image {
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  width: 100%;
+  padding: 5px;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.thumbnails {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100px;
+  height: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnails img {
+  opacity: 0.2;
+  border: 3px solid rgba(0, 0, 0, 0);
+}
+
+.thumbnails:hover img {
+  opacity: 0.8;
+}
+
+.thumbnails > div.selected > img {
+  opacity: 0.8;
+  border: 3px solid dodgerblue;
+}

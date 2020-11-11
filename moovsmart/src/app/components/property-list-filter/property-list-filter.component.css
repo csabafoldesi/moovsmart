@@ -1,0 +1,9 @@
+.container {
+  margin: 0 5%;
+}
+
+.mat-form-field {
+  margin: 5px;
+  min-width: 10%;
+  max-width: 100%;
+}

@@ -1,0 +1,54 @@
+.list-item {
+  display: flex;
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.list-item:hover .property-image {
+  opacity: 0.8;
+}
+
+.list-item:hover {
+  background-color: rgba(0, 0, 0, .06);
+}
+
+div.image-placeholder {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+div.image-placeholder .mat-icon {
+  transform: scale(2);
+}
+
+.property-title {
+  font-size: 1.8em;
+  margin: 5px;
+}
+
+.property-subtitle {
+  font-size: 1.2em;
+  margin: 12px;
+}
+
+.property-subtitle div.item {
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+span.subtitle {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-skip-ink: none;
+}

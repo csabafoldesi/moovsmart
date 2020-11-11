@@ -1,0 +1,61 @@
+<div class="tab-container mat-elevation-z8">
+  <div class="flex-container">
+    <span class="material-icons">bookmark</span>
+    <h3 class="custom-span" i18n="bookmark-list">&nbsp;My bookmarks</h3>
+  </div>
+  <table [dataSource]="bookmarkedProperties" mat-table>
+
+    <ng-container matColumnDef="imageUrl">
+      <th *matHeaderCellDef class="custom-th-second" i18n="bookmark-list" mat-header-cell> Image</th>
+      <td *matCellDef="let element" class="custom-td-second" mat-cell>
+        <img (click)="propertyDetails(element.id)"
+             *ngIf="element?.imageUrl" [src]="element?.imageUrl"
+             i18n-alt="bookmark-list"
+             alt="{{element.name}} picture"
+             class="image-container">
+        <div *ngIf="!element?.imageUrl" class="image-placeholder">
+          <mat-icon aria-hidden="false" aria-label="Missing image" i18n-aria-label="bookmark-list">panorama</mat-icon>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef class="custom-th" i18n="bookmark-list" mat-header-cell> Name</th>
+      <td (click)="propertyDetails(element.id)" *matCellDef="let element" class="custom-td pointer"
+          mat-cell> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numberOfRooms">
+      <th *matHeaderCellDef class="custom-th" i18n="bookmark-list" mat-header-cell> Number of rooms</th>
+      <td *matCellDef="let element" class="custom-td td-align" mat-cell> {{element.numberOfRooms}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th *matHeaderCellDef class="custom-th" i18n="bookmark-list" mat-header-cell> Price (€)</th>
+      <td *matCellDef="let element" class="custom-td" mat-cell> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="floorArea">
+      <th *matHeaderCellDef class="custom-th" i18n="bookmark-list" mat-header-cell> Floor area (m²)</th>
+      <td *matCellDef="let element" class="custom-td" mat-cell> {{element.floorArea}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th *matHeaderCellDef class="custom-th" i18n="bookmark-list" mat-header-cell> Delete bookmark</th>
+      <td *matCellDef="let element" class="custom-td" mat-cell>
+        <button (click)="deleteBookmark(element.id)" color="primary" i18n="bookmark-list" mat-button type="button">
+          DELETE
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+  </table>
+
+  <br *ngIf="bookmarkedProperties === null">
+  <p *ngIf="bookmarkedProperties === null" class="mat-h3 custom-paragraph" i18n="bookmark-list">No bookmark found.</p>
+
+
+</div>

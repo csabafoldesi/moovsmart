@@ -1,0 +1,13 @@
+<div class="message-send-dialog">
+  <div mat-dialog-content>
+    <app-message-form
+      [accountDetails]="this.data.accountDetails"
+      [propertyId]="this.data.propertyId"
+      (dialogCloseEmitter)="onCancel()"
+    ></app-message-form>
+  </div>
+  <div mat-dialog-actions>
+    <button (click)="onCancel()" i18n="message-send-dialog-button" mat-button>CANCEL</button>
+    <button (click)="onSubmit()" color="primary" i18n="message-send-dialog-button" mat-button>SEND</button>
+  </div>
+</div>

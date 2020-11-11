@@ -1,0 +1,88 @@
+<div class="list-row-container">
+  <div (click)="details(property.id)"
+       *ngFor="let property of propertyList"
+       class="list-item mat-card">
+    <div>
+      <img *ngIf="property.smallImageUrl" [src]="property.smallImageUrl"
+           alt="image" class="property-image" height="200" width="200">
+      <div *ngIf="!property.imageUrl" class="image-placeholder">
+        <mat-icon aria-hidden="false" aria-label="Missing image" i18n-aria-label="property-list-row">panorama</mat-icon>
+      </div>
+    </div>
+    <div>
+      <div class="property-title">{{property.name}}</div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Price" i18n-aria-label="property-list-row">local_offer</mat-icon>
+        <div class="item">{{property.price}} €</div>
+      </div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Location" i18n-aria-label="property-list-row">home</mat-icon>
+        <div class="item">{{property.country}}, {{property.city}}</div>
+      </div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Building" i18n-aria-label="property-list-row" mat-card-avatar>
+          apartment
+        </mat-icon>
+        <div class="item">{{property.propertyCondition}} {{property.propertyType}} ({{property.yearBuilt}})</div>
+      </div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Info" i18n-aria-label="property-list-row" mat-card-avatar>info
+        </mat-icon>
+        <div class="item"><span class="subtitle"
+                                i18n="property-list-row">Number of rooms:</span> {{property.numberOfRooms}},
+        </div>
+        <div class="item"><span class="subtitle" i18n="property-list-row">Floor area:</span> {{property.floorArea}} m²,
+        </div>
+        <div class="item"><span class="subtitle" i18n="property-list-row">Balcony size:</span> {{property.balconySize}}
+          m²,
+        </div>
+        <div class="item"><span class="subtitle" i18n="property-list-row">Lot size:</span> {{property.lotSize}} m²</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--
+<table class="property-list-table">
+  <tbody>
+  <tr (click)="details(property.id)" *ngFor="let property of propertyList">
+    <td>
+      <img *ngIf="property.smallImageUrl" [src]="property.smallImageUrl"
+           alt="image" class="property-image" width="200" height="200">
+      <div *ngIf="!property.imageUrl" class="image-placeholder"></div>
+    </td>
+    <td>
+      <div class="property-title">{{property.name}}</div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Price">local_offer</mat-icon>
+        <span class="item">{{property.price}} €</span>
+      </div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Location">home</mat-icon>
+        <span class="item">{{property.country}}, {{property.city}}</span>
+      </div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Building" mat-card-avatar>apartment</mat-icon>
+        <span class="item">{{property.propertyCondition}} {{property.propertyType}} ({{property.yearBuilt}})</span>
+      </div>
+      <div class="property-subtitle flex">
+        <mat-icon aria-hidden="false" aria-label="Info" mat-card-avatar>info</mat-icon>
+        <span class="item"><span class="subtitle">Number of rooms:</span> {{property.numberOfRooms}},</span>
+        <span class="item"><span class="subtitle">Floor area:</span> {{property.floorArea}} m²,</span>
+        <span class="item"><span class="subtitle">Balcony size:</span> {{property.balconySize}} m²,</span>
+        <span class="item"><span class="subtitle">Lot size:</span> {{property.lotSize}} m²</span>
+      </div>
+    </td>
+    <td>
+
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+-->

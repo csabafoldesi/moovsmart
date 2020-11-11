@@ -1,0 +1,52 @@
+.card-container {
+  min-width: 150px;
+  max-width: 550px;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.card-header {
+  background-color: #3f505b;
+  color: white;
+  height: 30px;
+  padding-top: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.header-label {
+  font-size: 0.8em;
+  margin-left: 10px;
+}
+
+.header-label-name {
+  font-size: 0.8em;
+}
+
+.message-form {
+  min-width: 150px;
+  max-width: 530px;
+  width: 100%;
+  padding: 10px;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  padding-bottom: 10px;
+}
+
+p {
+  font-size: 13px;
+}
+
+span {
+  font-size: 17px;
+}
+
+.textarea {
+  font-size: 1.0em;
+  height: 80px;
+}

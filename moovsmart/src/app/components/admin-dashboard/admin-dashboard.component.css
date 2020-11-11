@@ -1,0 +1,152 @@
+.tab-container {
+  width: 80%;
+  min-width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #e9eef6;
+}
+
+.statistics-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  vertical-align: top;
+  margin-bottom: 30px;
+}
+
+.statistics {
+  margin: 10px;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.card-table-1 {
+  margin-top: 10px;
+  width: 170px;
+}
+
+.card-table-2 {
+  margin-top: 10px;
+  width: 180px;
+}
+
+.custom-span-color-1 {
+  color: #3f51b5;
+}
+
+.custom-span-color-2 {
+  color: green;
+}
+
+.custom-span-color-3 {
+  color: darkred;
+}
+
+.custom-paragraph-1 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.custom-paragraph-2 {
+  font-size: 14px;
+}
+
+.tab-inner-container {
+  border-radius: 5px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container-2 {
+  display: flex;
+  height: 30px;
+}
+
+.custom-span-1 {
+  display: block;
+  margin-top: 1px;
+}
+
+.custom-span-2 {
+  display: block;
+  margin-top: 3px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+div.image-placeholder {
+  width: 150px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+div.image-placeholder .mat-icon {
+  transform: scale(2);
+}
+
+.custom-th-first, .custom-td-first {
+  word-wrap: break-word !important;
+  width: 25px;
+  text-overflow: ellipsis;
+}
+
+.custom-th-second, .custom-td-second {
+  word-wrap: break-word !important;
+  width: 150px;
+  height: 100px;
+  text-overflow: ellipsis;
+}
+
+.custom-th-third, .custom-td-third {
+  word-wrap: break-word !important;
+  width: 90px;
+  text-overflow: ellipsis;
+  padding: 10px;
+}
+
+.custom-th-fourth, .custom-td-fourth {
+  word-wrap: break-word !important;
+  width: 50px;
+  text-overflow: ellipsis;
+}
+
+.custom-th, .custom-td {
+  word-wrap: break-word !important;
+  width: 75px;
+  text-overflow: ellipsis;
+}
+
+.custom-align {
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.table-paginator {
+  width: 100%;
+}
+
+.custom-paragraph-3 {
+  margin-left: 20px;
+}
+
+.image-container {
+  width: 150px;
+  height: 100px;
+  cursor: pointer;
+}

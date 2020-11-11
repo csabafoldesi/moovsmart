@@ -1,0 +1,98 @@
+<div class="container">
+  <mat-card class="card-container mat-elevation-z6">
+    <p *ngIf="!isEdited" class="mat-headline" i18n="registration-form">Create New Account</p>
+    <p *ngIf="isEdited" class="mat-headline" i18n="registration-form">Edit Account</p>
+
+    <form (ngSubmit)="submit()" [formGroup]="registrationForm" class="registration-form">
+
+      <mat-form-field class="form-full-width">
+        <mat-label><span class="material-icons">account_box</span><span class="custom-span" i18n="registration-form">&nbsp;Full name *</span>
+        </mat-label>
+        <input formControlName="fullName" i18n-placeholder="registration-form" matInput placeholder="Enter name"
+               type="text">
+        <mat-error *ngIf="registrationForm.get('fullName').errors?.serverError">
+          {{registrationForm.get('fullName').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <mat-label><span class="material-icons">email</span><span class="custom-span" i18n="registration-form">&nbsp;Email address *</span>
+        </mat-label>
+        <input formControlName="email" i18n-placeholder="registration-form" matInput placeholder="Enter email"
+               type="email">
+        <mat-error *ngIf="registrationForm.get('email').errors?.serverError">
+          {{registrationForm.get('email').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="isEdited" class="form-full-width">
+        <mat-label><span class="material-icons">lock</span><span class="custom-span" i18n="registration-form">&nbsp;Original password</span>
+        </mat-label>
+        <input formControlName="passwordOriginal" i18n-placeholder="registration-form" matInput
+               placeholder="Enter original password" type="password">
+        <mat-error *ngIf="registrationForm.get('passwordOriginal').errors?.serverError">
+          {{registrationForm.get('passwordOriginal').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <mat-label *ngIf="!isEdited"><span class="material-icons">lock</span><span
+          class="custom-span" i18n="registration-form">&nbsp;Password *</span></mat-label>
+        <mat-label *ngIf="isEdited"><span class="material-icons">lock</span><span
+          class="custom-span" i18n="registration-form">&nbsp;Password</span></mat-label>
+        <input formControlName="password" i18n-placeholder="registration-form" matInput placeholder="Enter password"
+               type="password">
+        <mat-error *ngIf="registrationForm.get('password').errors?.serverError">
+          {{registrationForm.get('password').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <mat-label *ngIf="!isEdited"><span class="material-icons">lock</span><span class="custom-span"
+                                                                                   i18n="registration-form">&nbsp;Confirm password *</span>
+        </mat-label>
+        <mat-label *ngIf="isEdited"><span class="material-icons">lock</span><span class="custom-span"
+                                                                                  i18n="registration-form">&nbsp;Confirm password</span>
+        </mat-label>
+        <input formControlName="passwordConfirm" i18n-placeholder="registration-form" matInput
+               placeholder="Enter password confirmation" type="password">
+        <mat-error *ngIf="registrationForm.get('passwordConfirm').errors?.serverError">
+          {{registrationForm.get('passwordConfirm').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="!isAdminRole()" class="form-full-width">
+        <mat-label i18n="registration-form">Account type *</mat-label>
+        <mat-select formControlName="role">
+          <mat-option disabled i18n="registration-form" value="">-- Please choose an account type --</mat-option>
+          <mat-option *ngFor="let role of registrationFormInitData?.roles" [value]="role.role">
+            {{role.displayName}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="registrationForm.get('role').errors?.serverError">
+          {{registrationForm.get('role').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <mat-label><span class="material-icons">phone</span><span class="custom-span" i18n="registration-form">&nbsp;Phone number
+                              <small>(max. 18 char.)</small></span></mat-label>
+        <input formControlName="phoneNumber" i18n-placeholder="registration-form" matInput placeholder="Phone number"
+               type="text">
+        <mat-error *ngIf="registrationForm.get('phoneNumber').errors?.serverError">
+          {{registrationForm.get('phoneNumber').errors['serverError']}}
+        </mat-error>
+      </mat-form-field>
+      <small i18n="registration-form">Required *</small>
+      <br><br>
+
+      <button *ngIf="!isEdited" color="primary" i18n="registration-form-button" mat-button type="submit">REGISTER
+      </button>
+      <button *ngIf="isEdited" color="primary" i18n="registration-form-button" mat-button type="submit">SAVE</button>
+      <button *ngIf="!isEdited" id="resendButton" color="primary" mat-button (click)="openResendEmail()" type="button"
+              i18n="registration-form-button" i18n-matTooltip="registration-form" matTooltip="Resend activation email">
+        RESEND EMAIL
+      </button>
+
+    </form>
+  </mat-card>
+</div>

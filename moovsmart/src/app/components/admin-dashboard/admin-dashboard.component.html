@@ -1,0 +1,464 @@
+<div class="tab-container mat-elevation-z8">
+  <div class="flex-container">
+    <span class="material-icons">dashboard</span>
+    <h3 class="custom-span-1" i18n="admin-dashboard">&nbsp;Admin dashboard</h3>
+  </div>
+
+  <div class="statistics-flex-container">
+    <div>
+      <mat-card class="mat-elevation-z5 statistics">
+        <div class="flex-container-2">
+          <span class="material-icons">account_box</span>
+          <h4 class="custom-span-2" i18n="admin-dashboard">&nbsp;Accounts</h4>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="statistics-flex-container">
+          <div>
+            <table class="card-table-1">
+              <colgroup>
+                <col style="width:80%">
+                <col style="width:20%">
+              </colgroup>
+              <tr>
+                <td colspan="2">
+                  <span class="material-icons custom-span-color-2">
+                    check_circle
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p i18n="admin-dashboard" class="mat-h4 custom-paragraph-1">Visitors (active):</p>
+                </td>
+                <td>
+                  <p class="mat-h4 custom-paragraph-2">{{accountStatistics?.numberOfVisitors}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <span class="material-icons custom-span-color-2">
+                    check_circle
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p i18n="admin-dashboard" class="mat-h4 custom-paragraph-1">Owners (active):</p>
+                </td>
+                <td>
+                  <p class="mat-h4 custom-paragraph-2">{{accountStatistics?.numberOfOwners}}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <table class="card-table-2">
+              <colgroup>
+                <col style="width:90%">
+                <col style="width:10%">
+              </colgroup>
+              <tr>
+                <td colspan="2">
+                  <span class="material-icons custom-span-color-1">
+                    pending
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p i18n="admin-dashboard" class="mat-h4 custom-paragraph-1">Unconfirmed accounts:</p>
+                </td>
+                <td>
+                  <p class="mat-h4 custom-paragraph-2">{{accountStatistics?.numberOfUnconfirmed}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <span class="material-icons custom-span-color-3">
+                    disabled_by_default
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p i18n="admin-dashboard" class="mat-h4 custom-paragraph-1">Inactive accounts:</p>
+                </td>
+                <td>
+                  <p class="mat-h4 custom-paragraph-2">{{accountStatistics?.numberOfInactive}}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div>
+      <mat-card class="mat-elevation-z5 statistics">
+        <div class="flex-container-2">
+          <span class="material-icons">home</span>
+          <h4 class="custom-span-2" i18n="admin-dashboard">&nbsp;Properties</h4>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="statistics-flex-container">
+          <div>
+            <table class="card-table-1">
+              <colgroup>
+                <col style="width:80%">
+                <col style="width:20%">
+              </colgroup>
+              <tr>
+                <td colspan="2">
+                  <span class="material-icons custom-span-color-1">
+                    pending
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p i18n="admin-dashboard" class="mat-h4 custom-paragraph-1">Pending properties:</p>
+                </td>
+                <td>
+                  <p class="mat-h4 custom-paragraph-2">{{lengthPending}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <span class="material-icons custom-span-color-2">
+                    check_circle
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p i18n="admin-dashboard" class="mat-h4 custom-paragraph-1">Active properties:</p>
+                </td>
+                <td>
+                  <p class="mat-h4 custom-paragraph-2">{{lengthActive}}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <table class="card-table-2">
+              <colgroup>
+                <col style="width:90%">
+                <col style="width:10%">
+              </colgroup>
+              <tr>
+                <td colspan="2">
+                  <span class="material-icons custom-span-color-3">
+                    disabled_by_default
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p i18n="admin-dashboard" class="mat-h4 custom-paragraph-1">Inactive properties:</p>
+                </td>
+                <td>
+                  <p class="mat-h4 custom-paragraph-2">{{lengthInactive}}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-tab-group class="mat-elevation-z5 tab-inner-container" [(selectedIndex)]="selectedTabIndex"
+                 (selectedTabChange)="onTabChanged($event);">
+    <mat-tab i18n-label="admin-dashboard" label="Pending properties">
+      <mat-paginator *ngIf="pendingPropertyList?.length > 3"
+                     (page)="onPageChanged($event)"
+                     [pageIndex]="page"
+                     [length]="lengthPending"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [pageSize]="pageSize"
+                     showFirstLastButtons class="table-paginator">
+      </mat-paginator>
+      <table mat-table [dataSource]="dataSourcePending" (matSortChange)="sortData($event)" matSort>
+
+        <ng-container matColumnDef="id">
+          <th class="custom-th-first" mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
+          <td class="custom-td-first" mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="imageUrl">
+          <th *matHeaderCellDef class="custom-th-second" i18n="admin-dashboard" mat-header-cell> Image</th>
+          <td class="custom-td-second" mat-cell *matCellDef="let element">
+            <img *ngIf="element?.imageUrl"
+                 [src]="element?.imageUrl"
+                 alt="{{element.name}} picture"
+                 i18n-alt="admin-dashboard"
+                 (click)="propertyDetails(element.id)"
+                 class="image-container">
+            <div *ngIf="!element?.imageUrl" class="image-placeholder">
+              <mat-icon aria-hidden="false" aria-label="Missing image" i18n-aria-label="admin-dashboard">panorama
+              </mat-icon>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef class="custom-th-third" i18n="admin-dashboard" mat-header-cell mat-sort-header> Name
+          </th>
+          <td class="custom-td-third pointer" mat-cell *matCellDef="let element"
+              (click)="propertyDetails(element.id)"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Address</th>
+          <td class="custom-td" mat-cell *matCellDef="let element">
+            <small>{{element.country}}</small><br>
+            <small>{{element.zipCode}}</small>&nbsp;
+            <small>{{element.city}}</small><br>
+            <small>{{element.street}}</small><br>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numberOfRooms">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Number of
+            rooms
+          </th>
+          <td class="custom-td custom-align" mat-cell *matCellDef="let element"> {{element.numberOfRooms}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Price (€)</th>
+          <td class="custom-td" mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="floorArea">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Floor area
+            (m²)
+          </th>
+          <td class="custom-td" mat-cell *matCellDef="let element"> {{element.floorArea}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="activation">
+          <th *matHeaderCellDef class="custom-th custom-align" i18n="admin-dashboard" mat-header-cell> Activation</th>
+          <td class="custom-td custom-align" mat-cell *matCellDef="let element">
+            <button (click)="activateProperty(element.id)" color="primary" i18n="admin-dashboard-button" mat-button
+                    type="button">ACTIVATE
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsPending"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsPending;"></tr>
+
+      </table>
+      <mat-paginator (page)="onPageChanged($event)"
+                     [pageIndex]="page"
+                     [length]="lengthPending"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [pageSize]="pageSize"
+                     showFirstLastButtons class="table-paginator">
+      </mat-paginator>
+
+      <br *ngIf="pendingPropertyList === null">
+      <p *ngIf="pendingPropertyList === null" class="mat-h3 custom-paragraph-3" i18n="admin-dashboard">No pending
+        property
+        found.</p>
+    </mat-tab>
+
+
+    <mat-tab i18n-label="admin-dashboard" label="Active properties">
+      <mat-paginator *ngIf="activePropertyList?.length > 3"
+                     (page)="onPageChanged($event)"
+                     [pageIndex]="page"
+                     [length]="lengthActive"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [pageSize]="pageSize"
+                     showFirstLastButtons class="table-paginator">
+      </mat-paginator>
+      <table mat-table [dataSource]="dataSourceActive" (matSortChange)="sortData($event)" matSort>
+
+        <ng-container matColumnDef="id">
+          <th class="custom-th-first" mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
+          <td class="custom-td-first" mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="imageUrl">
+          <th *matHeaderCellDef class="custom-th-second" i18n="admin-dashboard" mat-header-cell> Image</th>
+          <td class="custom-td-second" mat-cell *matCellDef="let element">
+            <img *ngIf="element?.imageUrl"
+                 [src]="element?.imageUrl" alt="{{element.name}} picture"
+                 (click)="propertyDetails(element.id)"
+                 class="image-container">
+            <div *ngIf="!element?.imageUrl" class="image-placeholder">
+              <mat-icon aria-hidden="false" aria-label="Missing image" i18n-aria-label="admin-dashboard">panorama
+              </mat-icon>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef class="custom-th-third" i18n="admin-dashboard" mat-header-cell mat-sort-header> Name
+          </th>
+          <td class="custom-td-third pointer" mat-cell *matCellDef="let element"
+              (click)="propertyDetails(element.id)"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Address</th>
+          <td class="custom-td" mat-cell *matCellDef="let element">
+            <small>{{element.country}}</small><br>
+            <small>{{element.zipCode}}</small>&nbsp;
+            <small>{{element.city}}</small><br>
+            <small>{{element.street}}</small><br>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numberOfRooms">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Number of
+            rooms
+          </th>
+          <td class="custom-td custom-align" mat-cell *matCellDef="let element"> {{element.numberOfRooms}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Price (€)</th>
+          <td class="custom-td" mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="floorArea">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Floor area
+            (m²)
+          </th>
+          <td class="custom-td" mat-cell *matCellDef="let element"> {{element.floorArea}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="views">
+          <th *matHeaderCellDef class="custom-th-fourth" i18n="admin-dashboard" mat-header-cell mat-sort-header> Views
+          </th>
+          <td class="custom-td-fourth" mat-cell *matCellDef="let element"> {{element.visits}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="activation">
+          <th *matHeaderCellDef class="custom-th custom-align" i18n="admin-dashboard" mat-header-cell> Inactivation</th>
+          <td class="custom-td custom-align" mat-cell *matCellDef="let element">
+            <button (click)="openDialog(element.id)" color="primary" i18n="admin-dashboard-button" mat-button
+                    type="button">INACTIVATE
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <mat-paginator (page)="onPageChanged($event)"
+                     [pageIndex]="page"
+                     [length]="lengthActive"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [pageSize]="pageSize"
+                     showFirstLastButtons class="table-paginator">
+      </mat-paginator>
+
+      <br *ngIf="activePropertyList === null">
+      <p *ngIf="activePropertyList === null" class="mat-h3 custom-paragraph-3" i18n="admin-dashboard">No active property
+        found.</p>
+    </mat-tab>
+
+
+    <mat-tab i18n-label="admin-dashboard" label="Inactive properties">
+      <mat-paginator *ngIf="inactivePropertyList?.length > 3"
+                     (page)="onPageChanged($event)"
+                     [pageIndex]="page"
+                     [length]="lengthInactive"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [pageSize]="pageSize"
+                     showFirstLastButtons class="table-paginator">
+      </mat-paginator>
+      <table mat-table [dataSource]="dataSourceInactive" (matSortChange)="sortData($event)" matSort>
+
+        <ng-container matColumnDef="id">
+          <th class="custom-th-first" mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
+          <td class="custom-td-first" mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="imageUrl">
+          <th *matHeaderCellDef class="custom-th-second" i18n="admin-dashboard" mat-header-cell> Image</th>
+          <td class="custom-td-second" mat-cell *matCellDef="let element">
+            <img *ngIf="element?.imageUrl"
+                 [src]="element?.imageUrl" alt="{{element.name}} picture"
+                 (click)="propertyDetails(element.id)"
+                 class="image-container">
+            <div *ngIf="!element?.imageUrl" class="image-placeholder">
+              <mat-icon aria-hidden="false" aria-label="Missing image" i18n-aria-label="admin-dashboard">panorama
+              </mat-icon>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef class="custom-th-third" i18n="admin-dashboard" mat-header-cell mat-sort-header> Name
+          </th>
+          <td class="custom-td-third pointer" mat-cell *matCellDef="let element"
+              (click)="propertyDetails(element.id)"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Address</th>
+          <td class="custom-td" mat-cell *matCellDef="let element">
+            <small>{{element.country}}</small><br>
+            <small>{{element.zipCode}}</small>&nbsp;
+            <small>{{element.city}}</small><br>
+            <small>{{element.street}}</small><br>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numberOfRooms">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Number of
+            rooms
+          </th>
+          <td class="custom-td custom-align" mat-cell *matCellDef="let element"> {{element.numberOfRooms}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Price (€)</th>
+          <td class="custom-td" mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="floorArea">
+          <th *matHeaderCellDef class="custom-th" i18n="admin-dashboard" mat-header-cell mat-sort-header> Floor area
+            (m²)
+          </th>
+          <td class="custom-td" mat-cell *matCellDef="let element"> {{element.floorArea}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="views">
+          <th *matHeaderCellDef class="custom-th-fourth" i18n="admin-dashboard" mat-header-cell mat-sort-header> Views
+          </th>
+          <td class="custom-td-fourth" mat-cell *matCellDef="let element"> {{element.visits}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="activation">
+          <th *matHeaderCellDef class="custom-th custom-align" i18n="admin-dashboard" mat-header-cell> Activation</th>
+          <td class="custom-td custom-align" mat-cell *matCellDef="let element">
+            <button (click)="activateProperty(element.id)" color="primary" i18n="admin-dashboard-button" mat-button
+                    type="button">ACTIVATE
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <mat-paginator (page)="onPageChanged($event)"
+                     [pageIndex]="page"
+                     [length]="lengthInactive"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [pageSize]="pageSize"
+                     showFirstLastButtons class="table-paginator">
+      </mat-paginator>
+
+      <br *ngIf="inactivePropertyList === null">
+      <p *ngIf="inactivePropertyList === null" class="mat-h3 custom-paragraph-3" i18n="admin-dashboard">No inactive
+        property found.</p>
+    </mat-tab>
+  </mat-tab-group>
+</div>

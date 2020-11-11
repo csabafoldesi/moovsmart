@@ -1,0 +1,40 @@
+<div [formGroup]="imageForm" class="form-group">
+  <mat-form-field class="form-image-input">
+    <mat-label>Image</mat-label>
+    <ngx-mat-file-input
+      (change)="onChange($event)"
+      [accept]="'image/png, image/jpeg'"
+      formControlName="image"
+      i18n-placeholder="image-selector"
+      placeholder="Select Image"
+    >
+    </ngx-mat-file-input>
+    <button *ngIf="isLoading" mat-icon-button matSuffix>
+      <mat-spinner [diameter]="20"></mat-spinner>
+    </button>
+  </mat-form-field>
+</div>
+<div class="image-list">
+  <table class="image-table">
+    <tbody>
+    <tr *ngFor="let image of imageList; let i=index;">
+      <td class="image">
+        <img [alt]="image.title" [src]="image.thumbnailPath" class="image">
+      </td>
+      <td class="title">
+        <mat-form-field class="form-title-input">
+          <mat-label i18n="image-selector">Image Title</mat-label>
+          <input (change)="onImageTitleChanged(image, $event)" [value]="image.title" matInput
+                 i18n-placeholder="image-selector" placeholder="Enter a title for the image" type="text">
+        </mat-form-field>
+      </td>
+      <td class="button">
+        <button (click)="deleteImage(i)" class="clear-button" i18n-title="image-selector" mat-icon-button title="Remove"
+                type="button">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

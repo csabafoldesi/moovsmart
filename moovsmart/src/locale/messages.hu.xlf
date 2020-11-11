@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="dd4dac792202ee76ef532758a45415ab6c813820" datatype="html">
+        <source>Create property
+        </source>
+        <target state="final">Ingatlan létrehozása</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="f9933b0f014ae51dc7a25754c4240c37bf39d420" datatype="html">
+        <source>Batch property upload
+        </source>
+        <target state="final">Csoportos ingatlan feltöltés</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="016c72a790e7bc5086817bd961241fc189b5bcd3" datatype="html">
+        <source>
+          Messages
+        </source>
+        <target state="final">Üzenetek</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="83d55e2daa0ba8211c5f0db0df4ca713584a376e" datatype="html">
+        <source>
+          Messages
+        </source>
+        <target state="final">Üzenetek</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="f69091c0c989798037e7c6a91fdaba6b8f8e2a89" datatype="html">
+        <source>New account</source>
+        <target state="final">Új felhasználó</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <target state="final">Bejelentkezés</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="994363f08f9fbfa3b3994ff7b35c6904fdff18d8" datatype="html">
+        <source>Profile</source>
+        <target state="final">Profil</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="62e8591d0e050ec4ab55b175383f048ee5deea31" datatype="html">
+        <source>Admin dashboard</source>
+        <target state="final">Adminisztrációs központ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <target state="final">Kijelentkezés</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <note priority="1" from="description">menu-item</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

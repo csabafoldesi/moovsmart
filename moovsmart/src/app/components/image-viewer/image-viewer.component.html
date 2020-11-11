@@ -1,0 +1,13 @@
+<div *ngIf="selectedImage?.title" class="title">
+  {{selectedImage.title}}
+</div>
+<div *ngIf="imageList?.length > 0" class="image-viewer-container">
+  <img [alt]="selectedImage.title" [src]="selectedImage.filePath" class="large-image">
+  <div class="thumbnails">
+    <div (click)="selectImage(image)"
+         *ngFor="let image of imageList;"
+         [ngClass]="{'selected': image === selectedImage}">
+      <img [alt]="image.title" [src]="image.thumbnailPath">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="list-grid-container">
+  <div (click)="details(property.id)"
+       *ngFor="let property of propertyList"
+       class="property-card mat-card">
+    <div>
+      <img *ngIf="property.smallImageUrl" [src]="property.smallImageUrl"
+           alt="image" class="property-image" height="300" width="300">
+      <div *ngIf="!property.imageUrl" class="image-placeholder">
+        <mat-icon aria-hidden="false" aria-label="Missing image" i18n-aria-label="property-list-grid">panorama
+        </mat-icon>
+      </div>
+      <p class="property-title">
+        <span>{{property.name}}</span>
+      </p>
+    </div>
+    <div class="flex-container-text">
+      <div class="description-item" i18n-matTooltip="property-list-grid" matTooltip="Number of rooms"
+           matTooltipClass="tooltip">
+        <mat-icon aria-hidden="false" aria-label="Number of rooms" i18n-aria-label="property-list-grid">
+          single_bed
+        </mat-icon>
+        {{property.numberOfRooms}}
+      </div>
+      <div class="description-item" i18n-matTooltip="property-list-grid" matTooltip="Price" matTooltipClass="tooltip">
+        <mat-icon aria-hidden="false" aria-label="Price" i18n-aria-label="property-list-grid">credit_card</mat-icon>
+        {{property.price}} €
+      </div>
+      <div class="description-item" i18n-matTooltip="property-list-grid" matTooltip="Floor area"
+           matTooltipClass="tooltip">
+        <mat-icon aria-hidden="false" aria-label="Floor area" i18n-aria-label="property-list-grid">aspect_ratio
+        </mat-icon>
+        {{property.floorArea}} m²
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button routerLink="/property-list"><h1>Moovsmart</h1></a>
+    <div>
+      <a *ngIf="isLoggedIn() && isRoleSufficient()" mat-button routerLink="/property-form"
+         class="menu-item" i18n="menu-item">Create property
+      </a>
+      <a *ngIf="isLoggedIn() && isRoleSufficient()" class="menu-item" mat-button
+         i18n="menu-item" routerLink="/batch-upload">Batch property upload
+      </a>
+      <a *ngIf="isLoggedIn() && badgeCounter === '0'" class="menu-item" i18n="menu-item" mat-button
+         routerLink="/messages">
+        Messages</a>
+      <a *ngIf="isLoggedIn() && badgeCounter !== '0'" [matBadge]="badgeCounter"
+         class="menu-item" i18n="menu-item" mat-button matBadgeColor="warn" routerLink="/messages">
+        Messages
+      </a>
+      <a class="menu-item" i18n="menu-item" mat-button routerLink="/registration-form">New account</a>
+      <a *ngIf="!isLoggedIn()" class="menu-item" i18n="menu-item" mat-button routerLink="/login-form">Login</a>
+    </div>
+    <span class="menu-spacer"></span>
+    <a (click)="selectLanguage('hu')" [ngClass]="{'language-selected': languageCode === 'hu'}" mat-button>HU</a>
+    <a (click)="selectLanguage('en')" [ngClass]="{'language-selected': languageCode === 'en'}" mat-button>EN</a>
+    <button [disabled]="!isLoggedIn()" [matMenuTriggerFor]="menu"
+            aria-label="Profile"
+            mat-icon-button
+            matTooltip={{userInfo?.fullName}}>
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button disabled mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    <span>{{userInfo?.fullName}}</span>
+  </button>
+  <a mat-menu-item routerLink="/profile">
+    <span i18n="menu-item">Profile</span>
+  </a>
+  <a *ngIf="isAdminRole()" mat-menu-item routerLink="/admin">
+    <span i18n="menu-item">Admin dashboard</span>
+  </a>
+  <a mat-menu-item routerLink="/bookmark">
+    <span i18n="menu-item">Bookmarks</span>
+  </a>
+  <button (click)="logout()" mat-menu-item>
+    <span i18n="menu-item">Logout</span>
+  </button>
+</mat-menu>

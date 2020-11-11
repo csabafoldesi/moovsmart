@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="header-section">
+    <mat-form-field class="sorter">
+      <mat-label i18n="property-list">Sort</mat-label>
+      <mat-select (selectionChange)="getActivePropertiesOnePage()" [(ngModel)]="sortBy" [value]="'id.desc'"
+                  name="sort">
+        <mat-option i18n="property-list" value="id.desc">Default</mat-option>
+        <mat-option i18n="property-list" value="price">Lowest price</mat-option>
+        <mat-option i18n="property-list" value="price.desc">Highest price</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-button-toggle-group (change)="viewSelectionChanged($event)" class="view-selector">
+      <mat-button-toggle [checked]="pageViewStyle === 'view-image'" aria-label="Large images"
+                         i18n-aria-label="property-list" value="view-image">
+        <mat-icon>image</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle [checked]="pageViewStyle === 'view-grid'" aria-label="Grid" i18n-aria-label="property-list"
+                         value="view-grid">
+        <mat-icon>grid_on</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle [checked]="pageViewStyle === 'view-row'" aria-label="Rows" i18n-aria-label="property-list"
+                         value="view-row">
+        <mat-icon>table_rows</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <app-property-list-filter (newSearchEvent)="newSearch($event)"
+                            [filterParameters]="searchParameters"></app-property-list-filter>
+
+  <div *ngIf="!isLoading && !(propertyList.length > 0)" class="no-found">
+    <p i18n="property-list">No properties found</p>
+  </div>
+
+  <app-property-list-image (onClick)="details($event)"
+                           *ngIf="pageViewStyle === 'view-image'"
+                           [propertyList]="propertyList">
+  </app-property-list-image>
+
+  <app-property-list-grid (onClick)="details($event)"
+                          *ngIf="pageViewStyle === 'view-grid'"
+                          [propertyList]="propertyList">
+  </app-property-list-grid>
+
+  <app-property-list-row (onClick)="details($event)"
+                         *ngIf="pageViewStyle === 'view-row'"
+                         [propertyList]="propertyList">
+  </app-property-list-row>
+
+
+  <mat-paginator (page)="OnPageChange($event)"
+                 [length]="pageLength"
+                 [pageIndex]="page"
+                 [pageSizeOptions]="pageSizeOptions"
+                 [pageSize]="pageSize"
+  >
+  </mat-paginator>
+</div>

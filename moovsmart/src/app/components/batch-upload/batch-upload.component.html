@@ -1,0 +1,37 @@
+<div class="container">
+  <h2 i18n="batch-upload">Download data template</h2>
+  <form [formGroup]="downloadForm">
+    <mat-form-field>
+      <mat-label i18n="batch-upload">Format</mat-label>
+      <mat-select [value]="'xlsx'">
+        <mat-option [value]="'xlsx'">Office Open XML</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <a color="primary" href="{{baseUrl}}batch" i18n="batch-upload-button" mat-button>DOWNLOAD TEMPLATE</a>
+  </form>
+
+  <h2 i18n="batch-upload">Upload data file</h2>
+  <form (ngSubmit)="onUploadSubmit()" [formGroup]="uploadForm">
+    <mat-form-field class="form-file-input">
+      <mat-label i18n="batch-upload">Select file</mat-label>
+      <ngx-mat-file-input
+        [accept]="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"
+        formControlName="file"
+        i18n-placeholder="batch-upload"
+        placeholder="Select file"
+      >
+      </ngx-mat-file-input>
+      <button *ngIf="isLoading" mat-icon-button matSuffix>
+        <mat-spinner [diameter]="20"></mat-spinner>
+      </button>
+    </mat-form-field>
+    <button color="primary" i18n="batch-upload-button" mat-button>UPLOAD</button>
+  </form>
+
+  <div *ngIf="uploadResult?.generalError" class="error-container">
+    {{uploadResult?.generalError}}
+  </div>
+
+  <app-batch-upload-result *ngIf="uploadResult" [uploadResult]="uploadResult"></app-batch-upload-result>
+
+</div>

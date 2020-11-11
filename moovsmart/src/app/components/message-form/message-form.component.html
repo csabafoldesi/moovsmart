@@ -1,0 +1,28 @@
+<mat-card class="card-container">
+  <mat-card-header class="card-header">
+    <span i18n="message-form">New message</span>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+
+  <br>
+  <mat-label class="header-label" i18n="message-form">To:</mat-label>
+  <span class="header-label-name">{{accountDetails?.fullName}}</span>
+  <mat-error *ngIf="messageForm.get('toId').errors?.serverError">
+    {{messageForm.get('toId').errors['serverError']}}
+  </mat-error>
+  <mat-error *ngIf="messageForm.get('propertyId').errors?.serverError">
+    {{messageForm.get('propertyId').errors['serverError']}}
+  </mat-error>
+
+  <form (ngSubmit)="submit()" [formGroup]="messageForm" class="message-form">
+    <mat-form-field class="form-full-width">
+      <mat-label i18n="message-form">Message</mat-label>
+      <textarea formControlName="content" class="textarea" matInput></textarea>
+      <mat-error *ngIf="messageForm.get('content').errors?.serverError">
+        {{messageForm.get('content').errors['serverError']}}
+      </mat-error>
+    </mat-form-field>
+
+    <!--    <button class="custom-send-button" color="primary" mat-button type="submit">SEND</button>-->
+  </form>
+</mat-card>

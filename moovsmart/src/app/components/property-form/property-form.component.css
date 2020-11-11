@@ -1,0 +1,49 @@
+.card-container {
+  min-width: 150px;
+  max-width: 800px;
+  margin: auto;
+  width: 100%;
+}
+
+.property-form {
+  min-width: 150px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+.form-half-width {
+  width: 50%;
+}
+
+.description {
+  height: 100px;
+}
+
+mat-form-field {
+  margin: 10px;
+}
+
+input, textarea {
+  font-size: 1.2em;
+}
+
+.form-flex {
+  display: flex;
+}
+
+.form-flex > mat-form-field {
+  flex-grow: 1;
+  min-width: 100px;
+}
+
+mat-card-header {
+  color: rgb(63, 81, 181);
+}
+
+.number-field {
+  text-align: right;
+}

@@ -1,0 +1,218 @@
+<mat-card class="card-container mat-elevation-z4">
+  <form (ngSubmit)="submitFilter()" (change)="checkDates()" [formGroup]="listForm">
+    <div class="flex-container">
+      <div>
+        <mat-form-field class="form-field-full-width filterPropertyInput" appearance="legacy">
+          <mat-select formControlName="propertyId">
+            <mat-option [value]="0" i18n="message-list">All</mat-option>
+            <mat-option *ngFor="let property of propertiesList"
+                        [value]="property?.propertyId">{{property?.propertyName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-full-width filterInput" appearance="legacy">
+          <mat-label i18n="message-list">Choose a start date</mat-label>
+          <input type="date" matInput min="2020-01-01" [max]="currentDate"
+                 formControlName="startDate"
+                 i18n-matTooltip="message-list" i18n-placeholder="message-list"
+                 matTooltip="Date can be modified by arrow keys too." placeholder="Start date">
+          <small *ngIf="isInvalidStartDate" class="error-message" i18n="message-list">
+            Invalid start date
+          </small>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-full-width filterInput" appearance="legacy">
+          <mat-label i18n="message-list">Choose an end date</mat-label>
+          <input type="date" matInput min="2020-01-01" [max]="currentDate"
+                 formControlName="endDate"
+                 i18n-matTooltip="message-list" i18n-placeholder="message-list"
+                 matTooltip="Date can be modified by arrow keys too." placeholder="End date">
+          <small *ngIf="isInvalidEndDate" class="error-message" i18n="message-list">
+            Invalid end date
+          </small>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="button-container">
+      <button color="primary" i18n="message-list-button" mat-button type="submit">FILTER</button>&nbsp;
+      <button (click)="refreshMessageList()" color="primary" i18n="message-list-button" mat-button type="button">
+        REFRESH
+      </button>
+    </div>
+  </form>
+  <div class="flex-container">
+    <div>
+      <mat-paginator (page)="onPageChanged($event)"
+                     [pageIndex]="page"
+                     [length]="pageLength"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [pageSize]="pageSize">
+
+      </mat-paginator>
+    </div>
+  </div>
+
+  <mat-accordion multi>
+    <mat-expansion-panel disabled class="expansion-panel-table-header">
+      <mat-expansion-panel-header (matSortChange)="sortData($event)" matSort>
+        <table class="card-expansion-panel-main-header-table">
+          <colgroup>
+            <col style="width:35%">
+            <col style="width:30%">
+            <col style="width:25%">
+            <col style="width:10%">
+          </colgroup>
+          <tbody>
+          <tr>
+            <td>
+              <mat-panel-title>
+                <span class="sort-span custom-arrow" i18n="message-list" mat-sort-header="property">Advertisement</span>
+              </mat-panel-title>
+            </td>
+            <td>
+              <mat-panel-title>
+                <span *ngIf="isIncoming" class="sort-span custom-arrow" i18n="message-list"
+                      mat-sort-header="name">From</span>
+                <span *ngIf="!isIncoming" class="sort-span custom-arrow" i18n="message-list"
+                      mat-sort-header="name">To</span>
+              </mat-panel-title>
+            </td>
+            <td>
+              <mat-panel-title>
+                <span class="sort-span custom-arrow" i18n="message-list" mat-sort-header="date">Date</span>
+              </mat-panel-title>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle
+                         *ngFor="let message of messageList"
+                         (afterExpand)="message.unRead = false"
+                         (opened)="openPanel(message.id)"
+                         (closed)="closePanel(message.id)"
+                         [expanded]="checkExpanded(message.id)"
+                         class="expansion-panel mat-elevation-z2">
+
+      <mat-expansion-panel-header [ngClass]="{'unread-panel': message.unRead && isIncoming}"
+                                  (click)="readMessage(message?.id, message?.unRead)">
+
+        <table class="card-expansion-panel-header-table">
+          <colgroup>
+            <col style="width:35%">
+            <col style="width:30%">
+            <col style="width:25%">
+            <col style="width:10%">
+          </colgroup>
+          <tbody>
+          <tr>
+            <td>
+              <mat-panel-title *ngIf="isIncoming">
+                {{message.propertyDetailsMessage.name}}
+              </mat-panel-title>
+              <mat-panel-title *ngIf="!isIncoming">
+                {{message.propertyDetailsMessage.name}}
+              </mat-panel-title>
+            </td>
+            <td>
+              <mat-panel-title *ngIf="isIncoming">
+                {{message?.fromAccountDetailsMessage.fullName}}
+              </mat-panel-title>
+              <mat-panel-title *ngIf="!isIncoming">
+                {{message?.toAccountDetailsMessage.fullName}}
+              </mat-panel-title>
+            </td>
+            <td>
+              <mat-panel-title>
+                {{message?.timestampCreated}}
+              </mat-panel-title>
+            </td>
+            <td>
+              <button (click)="$event.stopPropagation();openDialog(message.id)" color="warn" mat-button>
+                <span class="material-icons">delete_forever</span>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+      </mat-expansion-panel-header>
+
+      <div class="expansion-panel-content-container">
+        <div class="flex-content-container">
+          <div class="flex-item item-1">
+            <mat-card class="property-details-card mat-elevation-z3">
+              <img *ngIf="message?.propertyDetailsMessage.imageUrl"
+                   [src]="message?.propertyDetailsMessage.imageUrl"
+                   alt="advertisement image" mat-card-image class="image-container"
+                   (click)="propertyDetails(message.propertyDetailsMessage.id)">
+              <div>
+                <small>{{message.propertyDetailsMessage.country}}</small><br>
+                <small>{{message.propertyDetailsMessage.zipCode}}</small>&nbsp;
+                <small>{{message.propertyDetailsMessage.city}}</small><br>
+                <small>{{message.propertyDetailsMessage.street}}</small><br>
+              </div>
+            </mat-card>
+          </div>
+          <div class="flex-item item-2">
+            <table class="custom-table">
+              <colgroup>
+                <col style="width:7%">
+                <col style="width:93%">
+              </colgroup>
+              <tbody>
+              <tr>
+                <td class="table-custom-column">
+                  <app-avatar-photo [name]="message?.fromAccountDetailsMessage.fullName"></app-avatar-photo>
+                </td>
+                <td>
+                  <mat-card class="message-card mat-elevation-z3">
+                    <div>
+                      <p style="white-space: pre-line">{{message?.content}}</p>
+                    </div>
+                  </mat-card>
+                  <button *ngIf="isIncoming" color="primary" mat-button
+                          (click)="reply(message.fromAccountDetailsMessage, message.propertyDetailsMessage.id)">
+                    <span class="material-icons">reply</span>
+                  </button>
+                  <button *ngIf="!isIncoming" color="primary" mat-button
+                          (click)="reply(message.toAccountDetailsMessage, message.propertyDetailsMessage.id)">
+                    <span class="material-icons">reply</span>
+                  </button>
+
+                  <button color="primary" mat-button (click)="toggleMessageThread(message.id)">
+                    <span class="material-icons">forum</span>
+                  </button>
+
+                  <!--                  <button color="warn" mat-button (click)="openDialog(message.id)">-->
+                  <!--                    <span class="material-icons">delete_forever</span>-->
+                  <!--                  </button>-->
+                  <div *ngIf="isIncoming">
+                    <app-message-thread-list *ngIf="checkOpenedThread(message.id)"
+                                             [otherPersonAccountDetails]="message?.fromAccountDetailsMessage"
+                                             [propertyDetails]="message.propertyDetailsMessage">
+                    </app-message-thread-list>
+                  </div>
+                  <div *ngIf="!isIncoming">
+                    <app-message-thread-list *ngIf="checkOpenedThread(message.id)"
+                                             [otherPersonAccountDetails]="message?.toAccountDetailsMessage"
+                                             [propertyDetails]="message.propertyDetailsMessage">
+                    </app-message-thread-list>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+  <br *ngIf="messageList === null">
+  <p *ngIf="messageList === null" class="mat-h3" i18n="message-list">No message found.</p>
+</mat-card>

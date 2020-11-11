@@ -1,0 +1,79 @@
+<div class="container">
+
+  <mat-card *ngIf="isActivationKey" class="card-container mat-elevation-z6">
+    <mat-card-header *ngIf="isSuccessful" i18n="activation">You will be redirected to login page...</mat-card-header>
+    <div *ngIf="isSuccessful" class="card-inner-container">
+      <mat-spinner class="custom-spinner" diameter="50"></mat-spinner>
+    </div>
+    <mat-error *ngIf="!isSuccessful" i18n="activation">
+      Error during account activation or account may have already been activated!
+    </mat-error>
+  </mat-card>
+
+  <mat-card *ngIf="isResendEmail" class="card-form-resend-container mat-elevation-z6">
+    <p class="mat-headline" i18n="activation">Resend activation email</p>
+    <mat-card-content>
+      <p i18n="activation">
+        We sent you a message with a link to activate your account. If you didn’t receive it,
+        you can re-enter your email address, and we’ll send you a new activation link.
+      </p>
+      <form (ngSubmit)="submitResend()" [formGroup]="resendForm" class="resend-form">
+
+        <mat-form-field class="form-full-width">
+          <mat-label>
+            <span class="material-icons custom-icon">email</span>
+            <span class="custom-span" i18n="activation">&nbsp;Email address</span>
+          </mat-label>
+          <input formControlName="emailResend" i18n-placeholder="activation" matInput placeholder="Enter email address"
+                 type="email">
+          <mat-error *ngIf="resendForm.get('emailResend').errors?.serverError">
+            {{resendForm.get('emailResend').errors['serverError']}}
+          </mat-error>
+        </mat-form-field>
+        <button color="primary" i18n="activation-button" mat-button routerLink="/registration-form" type="button">BACK
+        </button>
+        <button color="primary" i18n="activation-button" id="resendButton" mat-button type="submit">SEND</button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="isPasswordChange" class="card-form-reset-container mat-elevation-z6">
+    <p class="mat-headline">
+      <span class="material-icons">
+        vpn_key
+      </span>
+      <span i18n="activation">
+        Forgot your password?
+      </span>
+    </p>
+    <mat-card-content>
+      <p i18n="activation">
+        Enter your login email address and click the new password button.
+      </p>
+      <p i18n="activation">
+        Our system will send you the link required to enter the new password by e-mail,
+        your old password will remain valid until the change is successful.
+      </p>
+      <form (ngSubmit)="submitReset()" [formGroup]="resetForm" class="reset-form">
+
+        <mat-form-field class="form-full-width">
+          <mat-label>
+            <span class="material-icons custom-icon">email</span>
+            <span class="custom-span" i18n="activation">&nbsp;Email address</span>
+          </mat-label>
+          <input formControlName="emailReset" i18n-placeholder="activation" matInput placeholder="Enter email address"
+                 type="email">
+          <mat-error *ngIf="resetForm.get('emailReset').errors?.serverError">
+            {{resetForm.get('emailReset').errors['serverError']}}
+          </mat-error>
+        </mat-form-field>
+        <button color="primary" i18n="activation-button" mat-button routerLink="/login-form" type="button">BACK</button>
+        <button color="primary" i18n="activation-button" id="newPasswordButton" mat-button type="submit">NEW PASSWORD
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>

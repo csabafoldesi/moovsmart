@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="isOpenedSideNav">
+    <div>
+
+      <div class="sidenav-element">
+        <mat-icon>mail</mat-icon>
+        <span class="custom-span" i18n="messages">&nbsp;Messages</span>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="sidenav-list-element" (click)="showIncomingMessages()">
+        <mat-icon>inbox</mat-icon>
+        <span class="custom-span-2" i18n="messages">&nbsp;Inbox</span>
+      </div>
+      <div class="sidenav-list-element" (click)="showSentMessages()">
+        <mat-icon>send</mat-icon>
+        <span class="custom-span-3" i18n="messages">&nbsp;Sent</span>
+      </div>
+
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content-container">
+    <table class="side-nav-table">
+      <colgroup>
+        <col style="width:45%">
+        <col style="width:55%">
+      </colgroup>
+      <tbody>
+      <tr>
+        <td>
+          <button mat-icon-button color="primary" (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </td>
+        <td>
+          <mat-card-title *ngIf="isIncoming" class="card-title" i18n="messages">Inbox</mat-card-title>
+          <mat-card-title *ngIf="!isIncoming" class="card-title" i18n="messages">Sent</mat-card-title>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <app-message-list *ngIf="isIncoming" [isIncoming]="isIncoming"></app-message-list>
+          <app-message-list *ngIf="!isIncoming" [isIncoming]="isIncoming"></app-message-list>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-sidenav-content>
+</mat-sidenav-container>

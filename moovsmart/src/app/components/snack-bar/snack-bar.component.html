@@ -1,0 +1,34 @@
+<div>
+  <span *ngIf="data.id === 'WRONG_PROPERTY_ID'" i18n="snack-bar">Wrong property id.</span>
+  <span *ngIf="data.id === 'ACCOUNT_DELETED'" i18n="snack-bar">Account has been deleted. Bye!</span>
+  <span *ngIf="data.id === 'ACCOUNT_UNABLE_DELETE'" i18n="snack-bar">Unable to delete account.</span>
+  <span *ngIf="data.id === 'NEW_PASSWORD_SET'" i18n="snack-bar">New password has been set.</span>
+  <span *ngIf="data.id === 'UNSUCCESSFUL_ACTIVATION'" i18n="snack-bar">Unsuccessful activation!</span>
+  <span *ngIf="data.id === 'SUCCESSFUL_ACTIVATION'" i18n="snack-bar">Successful activation!</span>
+  <span *ngIf="data.id === 'NEW_PASSWORD_LINK_SENT'" i18n="snack-bar">Email has been sent with link to enter new password.</span>
+  <span *ngIf="data.id === 'EMAIL_RESENT'" i18n="snack-bar">Email has been resent.</span>
+  <span *ngIf="data.id === 'PROPERTY_ACTIVATED'" i18n="snack-bar">Property advertisement has been activated. Message has been sent to owner.</span>
+  <span *ngIf="data.id === 'PROPERTY_ACTIVATION_ERROR'" i18n="snack-bar">Error during activation. Account type may have changed to visitor.</span>
+  <span *ngIf="data.id === 'PROPERTY_INACTIVATED'" i18n="snack-bar">Property advertisement has been inactivated. Message has been sent to owner.</span>
+  <span *ngIf="data.id === 'PROPERTY_INACTIVATION_ERROR'" i18n="snack-bar">Error during inactivation.</span>
+  <span *ngIf="data.id === 'UNSUPPORTED_FILE_FORMAT'" i18n="snack-bar">Unsupported file format.</span>
+  <span *ngIf="data.id === 'LOGIN_TO_SEND_MESSAGE'" i18n="snack-bar">Please login to send a message.</span>
+  <span *ngIf="data.id === 'MESSAGE_SENT'" i18n="snack-bar">Message has been sent.</span>
+  <span *ngIf="data.id === 'INCOMING_MESSAGE_DELETED'" i18n="snack-bar">Incoming message has been deleted.</span>
+  <span *ngIf="data.id === 'INCOMING_MESSAGE_DELETE_ERROR'" i18n="snack-bar">Unable to delete incoming message.</span>
+  <span *ngIf="data.id === 'SENT_MESSAGE_DELETED'" i18n="snack-bar">Sent message has been deleted.</span>
+  <span *ngIf="data.id === 'SENT_MESSAGE_DELETE_ERROR'" i18n="snack-bar">Unable to delete sent message.</span>
+  <span *ngIf="data.id === 'PROPERTY_DELETED'" i18n="snack-bar">Property has been deleted (inactivated).</span>
+  <span *ngIf="data.id === 'PROPERTY_DELETED_BY_ADMIN'" i18n="snack-bar">Property has been deleted (inactivated) by admin. Message has been sent to owner.</span>
+  <span *ngIf="data.id === 'ACCESS_DENIED'" i18n="snack-bar">Access denied.</span>
+  <span *ngIf="data.id === 'PROPERTY_DELETE_ERROR'" i18n="snack-bar">Unable to delete property.</span>
+  <span *ngIf="data.id === 'PROPERTY_SAVED_MESSAGE_SENT'" i18n="snack-bar">Property has been saved. Notification messages have been sent to all admins.</span>
+  <span *ngIf="data.id === 'PROPERTY_SAVED'" i18n="snack-bar">Property has been saved.</span>
+  <span *ngIf="data.id === 'PROPERTY_UPDATED'" i18n="snack-bar">Property has been updated.</span>
+  <span *ngIf="data.id === 'PROPERTY_UPDATED_BY_ADMIN'" i18n="snack-bar">Property has been updated by admin. Message has been sent to owner.</span>
+  <span *ngIf="data.id === 'WRONG_PARAMETERS'" i18n="snack-bar">Wrong parameters.</span>
+  <span *ngIf="data.id === 'SUCCESSFUL_REGISTRATION'" i18n="snack-bar">Successful registration. Email with activation key has been sent. Please check your emails.</span>
+  <span *ngIf="data.id === 'ACCOUNT_UPDATED'" i18n="snack-bar">Account has been updated.</span>
+
+  <button (click)="ref.dismiss()" i18n="snack-bar-button" mat-button>OK</button>
+</div>

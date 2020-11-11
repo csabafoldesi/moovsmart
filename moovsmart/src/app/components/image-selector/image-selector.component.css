@@ -1,0 +1,74 @@
+.form-image-input, .form-title-input {
+  width: 100%;
+}
+
+.image-table > td {
+  margin: 0;
+}
+
+td.title {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+td.button {
+  vertical-align: top;
+}
+
+/*.image-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.image-item {
+  display: grid;
+  grid-template-columns: auto auto;
+  /*margin: 5px;
+  border: 1px solid gray;*/
+/*border: 1px solid rgba(0, 0, 0, 0);
+position: relative;*/
+/*display: flex;
+justify-content: space-between;
+align-items: center;
+}*/
+
+/*.image-item:hover {
+  border: 1px solid gray;
+}
+
+.image {
+  margin: 5px;
+  border: 1px solid gray;
+}
+
+.form-image-title {
+  width: calc(100% - 160px);
+}*/
+
+/*.clear-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.9);
+}*/
+
+/*.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.remove-button {
+  float: right;
+}
+
+.image-list-item:hover {
+  background-color: gainsboro;
+}*/

@@ -1,0 +1,37 @@
+.table-container {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.result-table {
+  border-collapse: collapse;
+}
+
+.result-table td {
+  font-size: 1em;
+  padding: 5px;
+}
+
+.result-table td.success {
+  color: #0CC20C;
+}
+
+.result-table th {
+  font-weight: normal;
+  font-size: 1em;
+  padding: 5px;
+}
+
+.result-table thead {
+  background-color: rgb(63, 81, 181);
+  color: white;
+}
+
+
+span.error {
+  height: 100%;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  background-color: red;
+}

@@ -1,0 +1,28 @@
+<mat-card class="card-container mat-elevation-z3">
+  <div class="scrollbar card-inside-container" id="style-1"
+       #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <mat-card *ngFor="let message of messageList" class="card-message-container"
+              [ngStyle]="{'background-color': accountInfo?.emailAddress
+            === message?.fromAccountDetailsMessage.email ? '#4285f4' : '#E4E6Eb'}"
+              [ngClass]="{'card-message-container-custom-left': accountInfo?.emailAddress
+            !== message?.fromAccountDetailsMessage.email,
+                          'card-message-container-custom-right': accountInfo?.emailAddress
+            === message?.fromAccountDetailsMessage.email}">
+
+      <mat-card-content [ngStyle]="{'background-color': accountInfo?.emailAddress
+            === message?.fromAccountDetailsMessage.email ? '#3367d6' : '#b6b8bc'}"
+                        class="card-inside-header-container">
+        <small i18n="message-thread" class="small-first">From:</small>
+        <small class="small-first">&nbsp;{{message?.fromAccountDetailsMessage.fullName}}</small><br>
+        <small i18n="message-thread" class="small-first">To:</small>
+        <small class="small-first">&nbsp;{{message?.toAccountDetailsMessage.fullName}}</small>
+      </mat-card-content>
+      <mat-card-content class="card-inside-content-container">
+        <p style="white-space: pre-line" class="custom-paragraph">{{message?.content}}</p>
+        <small class="small-second">{{message?.timestampCreated}}</small>
+      </mat-card-content>
+
+    </mat-card>
+    <div class="force-overflow"></div>
+  </div>
+</mat-card>
