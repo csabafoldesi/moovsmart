@@ -1,5 +1,5 @@
 # Moovsmart - real estate web application
 
-- **Backend:** Java, Spring Boot, MySQL
+- **Backend:** Java, Spring Boot, MySQL (*src*)
 
-- **Frontend:** Angular, TypeScript
+- **Frontend:** Angular, TypeScript (*moovsmart*)
